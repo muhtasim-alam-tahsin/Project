@@ -1,0 +1,101 @@
+#include <iostream>
+#include <ctime>
+using namespace std;
+
+char getuserChoice();
+char getcomputerChoice();
+void showChoice(char choice);
+void chooseWinner(char user,char computer);
+
+int main(){
+    char user;
+    char computer;
+    cout<<"Welcome to ROCK-PAPPER-SCISSORS game!!\n";
+    while(true){
+        user = getuserChoice();
+        cout<<"User choice: ";
+        showChoice(user);
+
+        computer = getcomputerChoice();
+        cout<<"Computer choice: ";
+        showChoice(computer);
+    
+        chooseWinner( user, computer);
+    }
+    return 0;
+}
+
+char getuserChoice(){
+    char user;
+
+    cout<<"Choose any of the following\n";
+    cout<<"Choose 'r' for Rock\n";
+    cout<<"Choose 'p' for Papper\n";
+    cout<<"Choose 's' for Scisssors\n";
+    //cout<<"Choose 'e' for exit\n";
+
+    do{    
+        cin>>user;
+    }while(user!='r' && user!='p' && user!='s');
+
+    // if(user='e'){
+    //     cout<<"Goodbye!!!";
+    // }
+    return user;
+}
+char getcomputerChoice(){
+    
+    srand(time(0));
+    int num = rand() % 3 + 1;
+
+    switch (num)
+    {
+    case 1: return 'r';
+    case 2: return 'p';
+    case 3: return 's';
+    }
+
+}
+
+void showChoice(char choice){
+
+    switch (choice){
+    case 'r':cout<<"ROck\n";
+        break;
+    case 'p':cout<<"Papper\n";
+        break;
+    case 's':cout<<"Scissors\n";
+        break;
+    }
+
+}
+void chooseWinner(char user,char computer){
+    switch (user)
+    {
+    case 'r':if(computer = 'r'){
+                cout<<"It's a tie!!\n";
+            }else if(computer = 'p'){
+                cout<<"Computer wins!!\n";
+            }else{
+                cout<<"User wins!!\n";
+            }
+            break;
+    case 'p':if(computer = 'r'){
+                cout<<"User wins!!\n";
+            }else if(computer = 'p'){
+                cout<<"It's a tie!!\n";
+            }else{
+                cout<<"Computer wins!!\n";
+            }
+            break;
+    case 's':if(computer = 'r'){
+                cout<<"Computer wins!!\n";
+            }else if(computer = 'p'){
+                cout<<"User wins!!\n";
+            }else{
+                cout<<"It's a tie!!\n";
+            }
+            break;
+    }
+
+}
